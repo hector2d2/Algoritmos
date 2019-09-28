@@ -108,7 +108,14 @@ namespace Arbolb
                         padre.nodos[i + 1].datos[k++] = actual.datos[j];//actualizar el padre nodo con los valores izquierdos del hijo
                     }
                     inicializardatos(actual.datos);
+                    //pasar nodos hijos 
+                    k = 0;
+                    for(j = degree / 2 + 1; j < degree + 1; j++)
+                    {
+                        padre.nodos[i + 1].nodos[k++] = actual.nodos[j];
+                    }
                     
+                    actual.nodos = inicializarnodos(actual);
                     break;
                 }                
             }
@@ -122,7 +129,7 @@ namespace Arbolb
 
         void inicializardatos(int[]datos)
         {
-            for(int i = 1; i < degree; i++)
+            for(int i = degree/2; i < degree; i++)
             {
                 datos[i] = -1;
             }
@@ -153,7 +160,7 @@ namespace Arbolb
 
         Nodo[] inicializarnodos(Nodo actual)
         {
-            for(int i = 2; i < degree+1; i++)
+            for(int i = degree/2+1; i < degree+1; i++)
             {
                 actual.nodos[i] = null;
             }
@@ -170,7 +177,7 @@ namespace Arbolb
                     if (actual.datos[i] != -1) Console.Write(actual.datos[i] + " ");
                     else break;
                 }
-                
+                Console.WriteLine();
                 for (i = 0; i < degree+1; i++)
                 {
                     if (actual.nodos[i] != null) preorden(actual.nodos[i]);
